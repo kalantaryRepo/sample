@@ -14,26 +14,31 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @PostMapping(name = "/save")
+    @PostMapping("/test")
+    public String test() {
+        return "hello";
+    }
+
+    @PostMapping("/save")
     public Product save(@RequestBody Product product) {
         return productService.insert(product);
     }
 
-    @GetMapping(name = "/search")
+    @GetMapping("/search")
     public Product search(@RequestBody Long id) {
         return productService.searchById(id);
     }
 
-//    @PostMapping(name = "/products")
-////    @RequestMapping(name = "/products", method = RequestMethod.GET)
-//    public List<Product> getAllProducts() {
-//        return productService.showAll();
-//    }
-//
-//    @DeleteMapping(name = "/delete")
-//    public void delete(@RequestBody Long id) {
-//        productService.delete(id);
-//    }
+    @PostMapping("/products")
+//    @RequestMapping(name = "/products", method = RequestMethod.GET)
+    public List<Product> getAllProducts() {
+        return productService.showAll();
+    }
+
+    @DeleteMapping("/delete")
+    public void delete(@RequestBody Long id) {
+        productService.delete(id);
+    }
 
 
 }
